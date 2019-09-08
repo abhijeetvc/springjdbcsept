@@ -19,10 +19,15 @@ repositories {
 	mavenCentral()
 }
 
+configurations {
+	compile.exclude module: "spring-boot-starter-tomcat"
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	compile("org.springframework.boot:spring-boot-starter-undertow:1.5.21.RELEASE")
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

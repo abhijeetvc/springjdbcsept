@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class EmployeeDao implements EmployeeRepository {
@@ -30,5 +31,13 @@ public class EmployeeDao implements EmployeeRepository {
         jdbcTemplate.update(sql,new Object[]{employee.getId(),
         employee.getName(),employee.getAge(),employee.getCity()});
         return "Data saved successfully";
+    }
+
+    @Override
+    public List<Map<String, Object>> getCombineData() {
+
+        String sql="select a.name,a.age,a.city,b.name as deptName from employee a,department b where a.deptId=b.id";
+        List<Map<String,Object>> list=jdbcTemplate.queryForList(sql);
+        return list;
     }
 }

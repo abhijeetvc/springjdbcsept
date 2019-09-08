@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class EmployeeController {
@@ -27,4 +28,11 @@ public class EmployeeController {
         String str=employeeDao.insertData(employee);
         return str;
     }
+
+    @GetMapping(value="/joindata")
+    public List<Map<String,Object>> getJoinData(){
+        List<Map<String,Object>> list=employeeDao.getCombineData();
+        return list;
+    }
+
 }
